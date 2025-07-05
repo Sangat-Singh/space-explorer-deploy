@@ -2,7 +2,6 @@
   "name": "space-exploration-page",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Sangat-Singh.github.io/space-explorer-deploy",
   "dependencies": {
     "@react-three/drei": "^10.3.0",
     "@react-three/fiber": "^9.1.4",
