@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;700;800&family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  background-color: #000000;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+.booter-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, #0b0b1f 0%, #000000 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.booter-title {
+  font-size: 2.5rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #00f0ff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px #00f0ff;
+  letter-spacing: 2px;
+}
+
+.highlight {
+  color: #fff;
+  font-weight: bold;
+}
+
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #00f0ff;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

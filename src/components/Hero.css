@@ -1,0 +1,83 @@
+.hero-container {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  /* background-image: url('../assets/starfield.png'); ✅ your image here */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.hero-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: visible;
+  pointer-events: none;
+}
+
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  color: white;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-content h1 {
+  font-family: 'Exo 2', sans-serif;
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.hero-content .subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  font-weight: 300;
+  margin: 1rem 0 2rem 0;
+}
+
+.get-started-btn {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #e0e0e0;
+  background: transparent;
+/* or try a subtle glow look */
+background: rgba(30, 60, 100, 0.3);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 2.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.get-started-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    text-align: center;
+    padding-top: 10vh; /* Push content down on mobile */
+  }
+}

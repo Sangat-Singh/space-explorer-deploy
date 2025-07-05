@@ -1,0 +1,639 @@
+/* ========== 🌌 GLOBAL BACKGROUND: STARFIELD ========== */
+body {
+  background: #05060f;
+  background-image: radial-gradient(ellipse at bottom, #05060f 0%, #0a0f2c 100%);
+  background-size: cover;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://assets.codepen.io/1462889/starfield.png') repeat;
+  opacity: 0.2;
+  z-index: -999;
+  animation: starScroll 60s linear infinite;
+}
+
+@keyframes starScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 -1000px; }
+}
+
+/* ========== 🔭 MAIN CONTENT CONTAINER ========== */
+.content-container {
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+
+
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(0, 0, 20, 0.4);
+  backdrop-filter: blur(2px);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 188, 255, 0.08);
+  transition: height 0.4s ease;
+}
+
+.content-wrapper h2 {
+  font-family: 'Exo 2', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========== 📅 CALENDAR & FILTER AREA ========== */
+.calendar-section {
+  margin-bottom: 3rem;
+}
+
+.today-heading {
+  margin-bottom: 1rem;
+}
+
+.calendar-container {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Spacing between calendar and filter/search buttons */
+.filter-toggle,
+.search-toggle {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Toggle Button */
+.toggle-button {
+  padding: 10px 20px;
+  background: #102044;
+  color: #7dd3fc;
+  border: 1px solid #00bcd4;
+  border-radius: 25px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.toggle-button:hover {
+  background: #1957c2;
+  color: #fbfdff;
+  box-shadow: 0 0 12px rgba(0, 188, 255, 0.6);
+}
+
+/* ========== 🌒 CALENDAR STYLING ========== */
+.react-datepicker {
+  background: linear-gradient(to bottom, #0c122c, #0a0f2c);
+  border: 1px solid #00bcd4;
+  border-radius: 16px;
+  box-shadow: 0 0 18px rgba(0, 188, 255, 0.2);
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+  z-index: 10;
+}
+
+/* 🧼 Hide other months' dates */
+.react-datepicker__day--outside-month {
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🌌 Custom Glowing Month Title */
+.react-datepicker__current-month {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.react-datepicker__current-month::before {
+  content: attr(data-month);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #00d2ff;
+  background: linear-gradient(90deg, #00d2ff, #1c92d2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 4px #00d2ff; }
+  100% { text-shadow: 0 0 12px #1c92d2; }
+}
+
+/* 📅 Day Names and Numbers */
+.react-datepicker__day,
+.react-datepicker__day-name {
+  font-size: 0.75rem;
+  font-family: 'Poppins', sans-serif;
+  color: #d5e5f5;
+  transition: all 0.3s ease;
+}
+
+.react-datepicker__day:hover {
+  background-color: #112244;
+  color: #7dd3fc;
+  border-radius: 50%;
+}
+
+.react-datepicker__day--selected {
+  background-color: #00bcd4;
+  color: #0c0c1d;
+  font-weight: bold;
+  box-shadow: 0 0 8px #00d2ff;
+  border-radius: 50%;
+}
+
+/* 📥 Input Field */
+.custom-datepicker {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #00bcd4;
+  background-color: #0b0c1f;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  width: 180px;
+  text-align: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-datepicker:focus {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+/* 🔽 Dropdown Arrow Off */
+.react-datepicker__triangle {
+  display: none;
+}
+
+/* 🔽 Month Dropdown Customization */
+.react-datepicker__month-dropdown-container {
+  margin-top: 0.5rem;
+}
+
+.react-datepicker__month-dropdown {
+  background: linear-gradient(to bottom, #0b0f2a, #111c3a);
+  border: 1px solid #00bcd4;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 188, 255, 0.3);
+  padding: 0.4rem 0;
+  font-family: 'Poppins', sans-serif;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 9999;
+}
+
+.react-datepicker__month-option {
+  padding: 0.6rem 1.2rem;
+  color: #cde7f8;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.react-datepicker__month-option:hover {
+  background-color: rgba(0, 195, 255, 0.1);
+  color: #7dd3fc;
+}
+
+.react-datepicker__month-option--selected {
+  background-color: #00bcd4;
+  color: #0c0c1d;
+  font-weight: bold;
+}
+
+/* 🔧 Hide year dropdown completely if ever visible */
+.react-datepicker__year-dropdown,
+.react-datepicker__year-read-view {
+  display: none !important;
+}
+.react-datepicker__header {
+  background: transparent;
+  background-color: #0c122c; /* or use same as your .react-datepicker background */
+  border-bottom: 1px solid rgba(0, 188, 255, 0.1);
+  padding: 10px;
+}
+/* Wrap the calendar month view */
+.react-datepicker__month {
+  animation: slideInMonth 0.4s ease;
+}
+
+@keyframes slideInMonth {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+/* ========== 🪐 EVENT CARD STYLING ========== */
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 5rem;
+  text-align: left;
+}
+
+.event-card {
+  background: linear-gradient(145deg, #0a0f2c, #111c44);
+  border: 2px solid rgba(0, 195, 255, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 195, 255, 0.05);
+  transition: all 0.4s ease;
+  animation: fadeInUp 0.8s ease forwards;
+  position: relative;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #00d2ff, #3a7bd5, #1c92d2);
+  background-size: 300% 300%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.event-card:hover::before {
+  opacity: 1;
+  animation: borderFlow 6s linear infinite;
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.event-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(0, 195, 255, 0.3);
+  background: linear-gradient(145deg, #0b122f, #0f1e46);
+}
+
+.card-image-container {
+  height: 200px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.event-card:hover .card-image {
+  opacity: 1;
+  transform: scale(1.06);
+  filter: brightness(1.1);
+}
+
+.card-year {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #cde7f8;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(0, 195, 255, 0.3);
+}
+
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #e0f2fe;
+}
+
+.card-title::before {
+  content: "🚀 ";
+  font-size: 1.3rem;
+}
+
+.card-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cdd6f4;
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.card-link {
+  color: #8be9fd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.card-link:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+.confidence-score {
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  color: #7dd3fc;
+  margin-top: auto;
+  opacity: 0.8;
+}
+
+/* ========== ⚠️ ERROR / LOADER / NO EVENTS ========== */
+.loader {
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  border-top: 6px solid #00bfff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.no-events-card {
+  text-align: center;
+  padding: 3rem;
+  border-radius: 16px;
+  background: rgba(10, 15, 45, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 195, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* 🌌 Parallax Container */
+.parallax-container {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+/* ⭐ Starfield Background */
+.stars {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.15;
+  animation: starScroll 100s linear infinite;
+  z-index: -3;
+  background-repeat: repeat;
+  background-size: auto;
+}
+
+@keyframes starScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 -1000px; }
+}
+
+/* 🌠 Shooting Stars Layer */
+.shooting-stars {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.shooting-stars::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(45deg, white, transparent);
+  animation: shooting 8s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(0) translateY(0) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-500px) translateY(800px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* 🌌 Nebula Parallax Layer */
+.nebula-layer {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.07;
+  transform: scale(1.2);
+  z-index: -2;
+  transition: transform 0.2s ease-out;
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes nebulaDrift {
+  0% { transform: scale(1.2) translate(0, 0); }
+  100% { transform: scale(1.2) translate(20px, 30px); }
+}
+/* 🌠 Advanced Shooting Star Animation */
+.shooting-stars::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(45deg, #ffffff, transparent);
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: shootStar 8s ease-in-out infinite;
+}
+
+@keyframes shootStar {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-700px, 900px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Randomize star direction by duplicating with delay */
+.shooting-stars::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 80%;
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(45deg, #ffffff, transparent);
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: shootStar2 10s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+@keyframes shootStar2 {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-600px, 700px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* .gradient-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(10, 10, 30, 0.8));
+  pointer-events: none;
+} */
+  .scroll-anchor {
+  scroll-margin-top: 0px; /* Adjust to match navbar height */
+}
+.scroll-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.scroll-top-button:hover {
+  transform: scale(1.1);
+}
+/* ========== 🚀 SCROLLABLE EVENT WRAPPER ========== */
+.event-scroll-wrapper {
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-bottom: 3rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 20, 0.25);
+  backdrop-filter: blur(2px);
+  box-shadow: inset 0 0 12px rgba(0, 195, 255, 0.1);
+
+  scrollbar-width: thin;
+  scrollbar-color: #00d2ff #0a0f2c;
+}
+
+/* 🌐 Webkit Scrollbar Styling */
+.event-scroll-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.event-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.event-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #00d2ff;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.event-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #1c92d2;
+}
+
+.calendar-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.right-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .calendar-controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .right-buttons {
+    align-items: stretch;
+  }
+}

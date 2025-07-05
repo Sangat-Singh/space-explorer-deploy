@@ -1,0 +1,43 @@
+.site-footer {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.footer-content h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #00ffff;
+}
+
+.footer-content p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.social-icons a {
+  color: #00ffff;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fff;
+  transform: scale(1.2);
+  text-shadow: 0 0 8px #00ffff;
+}
+
+footer .copyright {
+  font-size: 0.8rem;
+  color: #999;
+}

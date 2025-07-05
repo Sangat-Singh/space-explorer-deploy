@@ -1,0 +1,136 @@
+---------- PARALLAX BACKGROUND ----------
+.parallax-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-height: 700px;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 110%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s ease-out;
+  z-index: 0;
+}
+
+/* ---------- SPACE SHOWCASE MAIN CONTAINER ---------- */
+.space-showcase-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+  max-height: 700px;
+  width: 80%;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* ---------- SIDEBAR STYLING ---------- */
+.sidebar {
+  width: 30%;
+  min-width: 280px;
+  max-width: 400px;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+.sidebar h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #00ffff;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.sidebar p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #ddd;
+}
+
+/* ---------- BUTTON GROUP STYLING ---------- */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.button-group button {
+  padding: 0.6rem 1.1rem;
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-group button:hover,
+.button-group button.active {
+  background: #00ffff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+/* ---------- CANVAS AREA STYLING ---------- */
+.canvas-area {
+  width: 70%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-area canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ---------- RESPONSIVE SUPPORT ---------- */
+@media (max-width: 768px) {
+  .space-showcase-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .button-group {
+    justify-content: center;
+  }
+
+  .canvas-area {
+    width: 100%;
+    height: 60vh;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    padding: 1.5rem;
+  }
+
+  .canvas-area {
+    width: 70%;
+    height: 100%;
+  }
+}
