@@ -1,64 +1,51 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import './SpaceShowcase.css';
 
-// Models configuration
+// Models configuration (✅ all paths are relative now)
 const models = {
   Satellite: {
-    file: '/models/space_satellite.glb',
+    file: 'models/space_satellite.glb',
     description: 'A space satellite for communication, surveillance, and research.',
     scale: 1.5,
     cameraZ: 5,
   },
   Shuttle: {
-    file: '/models/space_shuttle.glb',
+    file: 'models/space_shuttle.glb',
     description: 'A spacecraft used for transporting astronauts and cargo.',
     scale: 0.7,
     cameraZ: 5,
   },
   PerseveranceRover: {
-    file: '/models/perseverance_voxel_rover.glb',
+    file: 'models/perseverance_voxel_rover.glb',
     description: 'NASA’s Mars Perseverance rover for exploration.',
     scale: 0.2,
     cameraZ: 0,
   },
   SpaceStation: {
-    file: '/models/space_station.glb',
+    file: 'models/space_station.glb', // ✅ fixed path
     description: 'A modular space station in Earth orbit.',
     scale: 0.05,
     cameraZ: 50,
   },
   Astronaut: {
-    file: '/models/space_hazmat_rust.glb',
+    file: 'models/space_hazmat_rust.glb', // ✅ fixed path
     description: 'A hazmat astronaut for EVA and spacewalks.',
     scale: 0.3,
     cameraZ: 0.15,
   },
 };
 
-// Preload all models
-Object.values(models).forEach((m) => useGLTF.preload(m.file));
-
-// Component for animated model
-function ScaledModel({ modelPath, scale }) {
-  const { scene } = useGLTF(modelPath);
-  const ref = useRef();
-
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
-    if (ref.current) {
-      ref.current.position.y = Math.sin(t * 1.5) * 0.1;
-    }
-  });
-
-  return <primitive object={scene} ref={ref} scale={scale} />;
-}
-
+// ✅ Moved preload inside the component using useEffect
 export default function SpaceShowcase() {
   const [selected, setSelected] = useState('Satellite');
   const current = models[selected];
   const parallaxRef = useRef();
+
+  useEffect(() => {
+    Object.values(models).forEach((m) => useGLTF.preload(m.file));
+  }, []);
 
   const handleMouseMove = (e) => {
     const centerX = window.innerWidth / 2;
@@ -77,10 +64,11 @@ export default function SpaceShowcase() {
       className="parallax-container"
       onMouseMove={handleMouseMove}
     >
+      {/* ✅ Use relative path for background image */}
       <div
         className="parallax-bg"
         ref={parallaxRef}
-        style={{ backgroundImage: "url('/images/nebula.png')" }}
+        style={{ backgroundImage: "url('images/nebula.png')" }}
       />
 
       <div className="space-showcase-container">
@@ -116,4 +104,19 @@ export default function SpaceShowcase() {
       </div>
     </div>
   );
+}
+
+// ✅ ScaledModel component remains the same
+function ScaledModel({ modelPath, scale }) {
+  const { scene } = useGLTF(modelPath);
+  const ref = useRef();
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime();
+    if (ref.current) {
+      ref.current.position.y = Math.sin(t * 1.5) * 0.1;
+    }
+  });
+
+  return <primitive object={scene} ref={ref} scale={scale} />;
 }
