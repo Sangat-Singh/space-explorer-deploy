@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/space-explorer-deploy/static/css/main.a9adde1d.css",
+    "main.js": "/space-explorer-deploy/static/js/main.a106c3ab.js",
+    "static/js/453.0220b473.chunk.js": "/space-explorer-deploy/static/js/453.0220b473.chunk.js",
+    "static/media/nebula.png": "/space-explorer-deploy/static/media/nebula.9e9f0f89d995778df38c.png",
+    "static/media/starfield.png": "/space-explorer-deploy/static/media/starfield.ad0c276c9c12e44be2dd.png",
+    "index.html": "/space-explorer-deploy/index.html",
+    "main.a9adde1d.css.map": "/space-explorer-deploy/static/css/main.a9adde1d.css.map",
+    "main.a106c3ab.js.map": "/space-explorer-deploy/static/js/main.a106c3ab.js.map",
+    "453.0220b473.chunk.js.map": "/space-explorer-deploy/static/js/453.0220b473.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a9adde1d.css",
+    "static/js/main.a106c3ab.js"
+  ]
+}
